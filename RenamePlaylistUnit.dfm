@@ -1,0 +1,75 @@
+object RenamePlaylistForm: TRenamePlaylistForm
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  Caption = #1055#1077#1088#1077#1080#1084#1077#1085#1086#1074#1072#1090#1100
+  ClientHeight = 158
+  ClientWidth = 239
+  Color = clBtnFace
+  Font.Charset = RUSSIAN_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = [fsBold]
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  Scaled = False
+  PixelsPerInch = 110
+  TextHeight = 15
+  object NameLabel: TLabel
+    Left = 17
+    Top = 21
+    Width = 127
+    Height = 19
+    Caption = #1042#1074#1077#1076#1080#1090#1077' '#1085#1072#1079#1074#1072#1085#1080#1077
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -14
+    Font.Name = 'Segoe UI'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object NameEdit: TEdit
+    Left = 17
+    Top = 48
+    Width = 200
+    Height = 27
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -14
+    Font.Name = 'Segoe UI'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+  end
+  object SaveButton: TBitBtn
+    Left = 17
+    Top = 104
+    Width = 88
+    Height = 33
+    Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -14
+    Font.Name = 'Segoe UI'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+    OnClick = SaveButtonClick
+  end
+  object CancelButton: TBitBtn
+    Left = 129
+    Top = 104
+    Width = 88
+    Height = 33
+    Caption = #1054#1090#1084#1077#1085#1072
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -14
+    Font.Name = 'Segoe UI'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+    OnClick = CancelButtonClick
+  end
+end

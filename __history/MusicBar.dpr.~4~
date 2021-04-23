@@ -1,0 +1,23 @@
+program MusicBar;
+
+uses
+  Vcl.Forms,
+  MainUnit in 'MainUnit.pas' {MainForm},
+  Vcl.Themes,
+  Vcl.Styles,
+  RenamePlaylistUnit in 'RenamePlaylistUnit.pas' {RenamePlaylistForm},
+  CreatePlaylistUnit in 'CreatePlaylistUnit.pas' {CreatePlaylistForm},
+  SettingsUnit in 'SettingsUnit.pas' {SettingsForm};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Glow');
+  Application.CreateForm(TMainForm, MainForm);
+  Application.CreateForm(TRenamePlaylistForm, RenamePlaylistForm);
+  Application.CreateForm(TCreatePlaylistForm, CreatePlaylistForm);
+  Application.CreateForm(TSettingsForm, SettingsForm);
+  Application.Run;
+end.

@@ -1,0 +1,237 @@
+unit SettingsUnit;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ComCtrls, JPEG,
+  Vcl.ExtDlgs, Vcl.ExtCtrls;
+
+
+
+type
+    TLanguages = (ENG, RUS);
+
+  TSettingsForm = class(TForm)
+    LanguagesBox: TComboBox;
+    LngLabel: TLabel;
+    SaveSettingsButton: TBitBtn;
+    AboutButton: TBitBtn;
+    SettingsLabel: TLabel;
+    Panel1: TPanel;
+    procedure SaveSettingsButtonClick(Sender: TObject);
+    procedure SetLanguage(Language: TLanguages);
+    procedure LoadSettings();
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  SettingsForm: TSettingsForm;
+  Language: TLanguages;
+
+implementation
+
+{$R *.dfm}
+
+uses
+    MainUnit, CreatePlaylistUnit, RenamePlaylistUnit;
+
+const
+    RUS_LNG = 'RUS';
+    ENG_LNG = 'ENG';
+
+procedure TSettingsForm.LoadSettings();
+begin
+    LanguagesBox.Clear;
+    LanguagesBox.Items.Add('Русский');
+    LanguagesBox.Items.Add('English');
+    if Language = ENG then
+        LanguagesBox.Text := 'English'
+    else
+        LanguagesBox.Text := 'Русский';
+end;
+
+procedure TSettingsForm.SaveSettingsButtonClick(Sender: TObject);
+const
+    CHNG_SUCC_MSG_RUS = 'Изменения успешно сохранены';
+    CHNG_SUCC_MSG_ENG = 'Changes saved successfully';
+    SETTINGS_CAP_RUS = 'Настройки';
+    SETTINGS_CAP_ENG = 'Settings';
+    ERR_MSG_RUS = 'Ошибка доступа к файлу конфигураций, изменения сохранены не будут';
+    ERR_MSG_ENG = 'Configuration file access error, changes will not be saved';
+
+var
+    CfgFile: TextFile;
+    Cap, Msg: string;
+begin
+    if Length(LanguagesBox.Text) <> 0 then
+    begin
+        try
+            AssignFile(CfgFile, ExeDirectory + '\settings.cfg');
+            Rewrite(CfgFile);
+            if LanguagesBox.Text = 'English' then
+            begin
+                Write(CfgFile, ENG_LNG);
+                Language := ENG;
+                SetLanguage(ENG);
+            end
+            else
+            begin
+                Write(CfgFile, RUS_LNG);
+                Language := RUS;
+                SetLanguage(RUS);
+            end;
+            CloseFile(CfgFile);
+            if Language = ENG then
+            begin
+                Cap := SETTINGS_CAP_ENG;
+                Msg := CHNG_SUCC_MSG_ENG;
+            end
+            else
+            begin
+                Cap := SETTINGS_CAP_RUS;
+                Msg := CHNG_SUCC_MSG_RUS;
+            end;
+            MessageBox(Handle, PChar(Msg), PChar(Cap), MB_OK + MB_ICONINFORMATION);
+        except
+            if Language = ENG then
+            begin
+                Cap := SETTINGS_CAP_ENG;
+                Msg := ERR_MSG_ENG;
+            end
+            else
+            begin
+                Cap := SETTINGS_CAP_RUS;
+                Msg := ERR_MSG_RUS;
+            end;
+            MessageBox(Handle, PChar(Msg), PChar(Cap), MB_OK + MB_ICONERROR);
+        end;
+    end;
+end;
+
+////////////////////////////LOCALIZATION////////////////////////////////////////
+
+procedure TSettingsForm.SetLanguage(Language: TLanguages);
+begin
+    if Language = ENG then
+    begin
+        Caption := 'Settings';
+        SettingsLabel.Caption := 'SETTINGS';
+        LngLabel.Caption := 'Language';
+        AboutButton.Caption := 'About program';
+        SaveSettingsButton.Caption := 'Save settings';
+
+        with MainForm do
+        begin
+            PlaylistLabel.Caption := 'PLAYLISTS';
+            NowPlayLabel.Caption := 'Now play:';
+
+            RepeatButton.Hint := 'Loop track';
+            MuteButton.Hint := 'Mute sound';
+            ShowPlaylistsButton.Hint := 'Show playlists';
+            SettingsButton.Hint := 'Settings';
+
+            CreatePlaylistButton.Hint := 'Create playlist';
+            AddPlaylistButton.Hint := 'Add playlist';
+            DeletePlaylistButton.Hint := 'Delete playlist';
+            UpdatePlaylistsButton.Hint := 'Update playlists';
+
+            BackButton.Hint := 'Back';
+            AddMusicButton.Hint := 'Add track';
+            DeleteMusicButton.Hint := 'Delete track';
+            UpdateTracksButton.Hint := 'Update tracks';
+
+            RenamePlaylistButton.Hint := 'Rename';
+            ChangeCoverButton.Hint := 'Change cover';
+
+            AddMusicDialog.Title := 'Add track';
+            AddPlaylistDialog.Title := 'Add playlist';
+            OpenPictureDialog.Title := 'Change cover';
+        end;
+
+        with CreatePlaylistForm do
+        begin
+            Caption := 'Create playlist';
+            NameLabel.Caption := 'Name';
+            CoverLabel.Caption := 'Cover';
+            TracksLabel.Caption := 'Tracks';
+            AddMusicButton.Hint := 'Add track';
+            DeleteButton.Hint := 'Delete track';
+            LoadButton.Caption := 'Load';
+            CreateButton.Caption := 'Create';
+            CancelButton.Caption := 'Cancel';
+        end;
+
+        with RenamePlaylistForm do
+        begin
+            Caption := 'Rename';
+            NameLabel.Caption := 'Enter the name';
+            SaveButton.Caption := 'Save';
+            CancelButton.Caption := 'Cancel';
+        end;
+
+    end
+    else
+    begin
+        Caption := 'Настройки';
+        SettingsLabel.Caption := 'НАСТРОЙКИ';
+        LngLabel.Caption := 'Язык';
+        AboutButton.Caption := 'О программе';
+        SaveSettingsButton.Caption := 'Сохранить настройки';
+
+        with MainForm do
+        begin
+            PlaylistLabel.Caption := 'ПЛЕЙЛИСТЫ';
+            NowPlayLabel.Caption := 'Сейчас играет:';
+
+            RepeatButton.Hint := 'Зациклить трек';
+            MuteButton.Hint := 'Без звука';
+            ShowPlaylistsButton.Hint := 'Показать плейлисты';
+            SettingsButton.Hint := 'Настройки';
+
+            CreatePlaylistButton.Hint := 'Создать плейлист';
+            AddPlaylistButton.Hint := 'Добавить плейлист';
+            DeletePlaylistButton.Hint := 'Удалить плейлист';
+            UpdatePlaylistsButton.Hint := 'Обновить плейлисты';
+
+            BackButton.Hint := 'Назад';
+            AddMusicButton.Hint := 'Добавить трек';
+            DeleteMusicButton.Hint := 'Удалить трек';
+            UpdateTracksButton.Hint := 'Обновить треки';
+
+            RenamePlaylistButton.Hint := 'Переименовать';
+            ChangeCoverButton.Hint := 'Сменить обложку';
+
+            AddMusicDialog.Title := 'Добавить трек';
+            AddPlaylistDialog.Title := 'Добавить плейлист';
+            OpenPictureDialog.Title := 'Сменить обложку';
+        end;
+
+        with CreatePlaylistForm do
+        begin
+            Caption := 'Создать плейлист';
+            NameLabel.Caption := 'Название плейлиста';
+            CoverLabel.Caption := 'Обложка';
+            TracksLabel.Caption := 'Треки';
+            AddMusicButton.Hint := 'Добавить трек';
+            DeleteButton.Hint := 'Удалить трек';
+            LoadButton.Caption := 'Загрузить';
+            CreateButton.Caption := 'Создать';
+            CancelButton.Caption := 'Отмена';
+        end;
+
+        with RenamePlaylistForm do
+        begin
+            Caption := 'Переименовать';
+            NameLabel.Caption := 'Введите название';
+            SaveButton.Caption := 'Сохранить';
+            CancelButton.Caption := 'Отмена';
+        end;
+
+    end;
+end;
+
+end.

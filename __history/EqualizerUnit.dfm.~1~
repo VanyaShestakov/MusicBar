@@ -1,0 +1,16 @@
+object EqualizerForm: TEqualizerForm
+  Left = 0
+  Top = 0
+  Caption = 'EqualizerForm'
+  ClientHeight = 294
+  ClientWidth = 633
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 110
+  TextHeight = 14
+end

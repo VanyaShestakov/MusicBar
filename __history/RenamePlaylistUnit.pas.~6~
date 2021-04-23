@@ -1,0 +1,53 @@
+unit RenamePlaylistUnit;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons;
+
+type
+  TRenamePlaylistForm = class(TForm)
+    FullTimeLabel: TLabel;
+    NameEdit: TEdit;
+    SaveButton: TBitBtn;
+    CancelButton: TBitBtn;
+    procedure SaveButtonClick(Sender: TObject);
+    procedure CancelButtonClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  RenamePlaylistForm: TRenamePlaylistForm;
+
+implementation
+
+{$R *.dfm}
+
+uses
+    MainUnit;
+
+const
+    MAIN_DIRECTORY = 'D:\Projects (Delphi)\KURSACH\Win32\Debug\Playlists';
+
+procedure TRenamePlaylistForm.CancelButtonClick(Sender: TObject);
+begin
+    RenamePlaylistForm.Close;
+end;
+
+procedure TRenamePlaylistForm.SaveButtonClick(Sender: TObject);
+begin
+    MainForm.MusicListBox.Directory := ExeDirectory + '\EmptyDir';
+    RenameFile(CurrentPlaylistDirectory, ExeDirectory + '\Playlists\' + NameEdit.Text);
+    MainForm.UpdatePlaylists;
+    CurrentPlaylistDirectory := ExeDirectory + '\Playlists\' + NameEdit.Text;
+    MainForm.MusicListBox.Directory := CurrentPlaylistDirectory;
+    MainForm.MusicListBox.Update;
+    MainForm.MusicLabel.Caption := AnsiUpperCase(NameEdit.Text);
+    RenamePlaylistForm.Close;
+end;
+
+end.

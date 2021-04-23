@@ -1,0 +1,69 @@
+unit RenamePlaylistUnit;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons;
+
+type
+  TRenamePlaylistForm = class(TForm)
+    NameLabel: TLabel;
+    NameEdit: TEdit;
+    SaveButton: TBitBtn;
+    CancelButton: TBitBtn;
+    procedure SaveButtonClick(Sender: TObject);
+    procedure CancelButtonClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  RenamePlaylistForm: TRenamePlaylistForm;
+
+implementation
+
+{$R *.dfm}
+
+uses
+    MainUnit;
+
+//const
+    //MAIN_DIRECTORY = 'D:\Projects (Delphi)\KURSACH\Win32\Debug\Playlists';
+
+procedure TRenamePlaylistForm.CancelButtonClick(Sender: TObject);
+begin
+    RenamePlaylistForm.Close;
+end;
+
+procedure TRenamePlaylistForm.SaveButtonClick(Sender: TObject);
+begin
+    if Length(NameEdit.Text) <> 0 then
+    begin
+        if not FileExists(ExeDirectory + '\Playlists') then
+            CreateDir(ExeDirectory + '\Playlists');
+        MainForm.MusicListBox.FileName := ExeDirectory;
+
+        if IsPlaying then
+        begin
+            MainForm.MusicPlayer.Close;
+            MainForm.DisactivateMusicPlayer;
+        end;
+
+        RenameFile(CurrentPlaylistDirectory, ExeDirectory + '\Playlists\' + NameEdit.Text);
+        MainForm.UpdatePlaylists;
+        CurrentPlaylistDirectory := ExeDirectory + 'Playlists\' + NameEdit.Text;
+
+        MainForm.MusicListBox.Directory := CurrentPlaylistDirectory;
+
+        MainForm.MusicListBox.Update;
+        MainForm.MusicLabel.Caption := NameEdit.Text;
+        RenamePlaylistForm.Close;
+    end
+    else
+        MessageBox(Handle, PChar('Введите название плейлиста'), PChar('Ошибка'), MB_OK + MB_ICONERROR);
+end;
+
+end.

@@ -1,0 +1,15 @@
+unit LocalizationUnit;
+
+interface
+
+implementation
+
+uses
+    MainUnit;
+
+procedure MyProcedure();
+begin
+
+end;
+
+end.
