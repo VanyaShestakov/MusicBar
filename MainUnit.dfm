@@ -8170,7 +8170,6 @@ object MainForm: TMainForm
     Top = 470
     Width = 35
     Height = 35
-    Enabled = False
     Glyph.Data = {
       36090000424D3609000000000000360000002800000018000000180000000100
       20000000000000090000B6000000B60000000000000000000000FFFFFF00FFFF
@@ -8254,7 +8253,6 @@ object MainForm: TMainForm
     Top = 470
     Width = 35
     Height = 35
-    Enabled = False
     Glyph.Data = {
       36090000424D3609000000000000360000002800000018000000180000000100
       20000000000000090000B6000000B60000000000000000000000FFFFFF00FFFF
@@ -8527,9 +8525,16 @@ object MainForm: TMainForm
     BevelOuter = bvNone
     Color = clNone
     DoubleBuffered = True
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -18
+    Font.Name = 'Segoe UI'
+    Font.Style = [fsBold]
     ParentBackground = False
     ParentDoubleBuffered = False
+    ParentFont = False
     TabOrder = 8
+    StyleElements = [seClient, seBorder]
     object TrackName: TLabel
       Left = 0
       Top = 0
@@ -9216,6 +9221,7 @@ object MainForm: TMainForm
     Width = 105
     Height = 19
     Max = 32000
+    Position = 32000
     TabOrder = 18
     TickMarks = tmBoth
     TickStyle = tsNone

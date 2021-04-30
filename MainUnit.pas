@@ -7,7 +7,7 @@ uses
     Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.MPlayer, Vcl.StdCtrls, Vcl.ComCtrls,
     Vcl.Menus, Vcl.ExtCtrls, Vcl.Imaging.jpeg, Vcl.Buttons, Vcl.FileCtrl,
     Vcl.WinXCtrls, mmsystem, ShellAPI, Vcl.Imaging.pngimage, Vcl.JumpList,
-    Vcl.WinXPickers, Vcl.TabNotBk, Vcl.ExtDlgs;
+    Vcl.WinXPickers, Vcl.TabNotBk, Vcl.ExtDlgs, TagReader, HeaderInfo;
 
 type
     TMainForm = class(TForm)
@@ -123,6 +123,7 @@ var
   ExeDirectory: string;
   IsPlaying: Boolean;
   IsActive: Boolean;
+  PrevVolumeValue: Integer;
 
 implementation
 
@@ -172,6 +173,7 @@ begin
     CheckFilesExistence();
     LoadPlaylists();
     ShowPlaylistsScreen();
+    DisactivateMusicPlayer;
 end;
 
 procedure TMainForm.FormActivate(Sender: TObject);
@@ -256,6 +258,7 @@ begin
         OpenPlayList(PlayListDirectory);
         ShowMusicScreen();
         CurrentIndex := 0;
+        MusicListBox.Selected[0] := True;
     end
     else
     begin
@@ -276,9 +279,9 @@ begin
     begin
         CurrentIndex := MusicListBox.ItemIndex;
         ActivateMusicPlayer();
+        MainImage.Picture := CurrPlaylistImage.Picture;
         OpenTrack(MusicListBox.FileName);
         NowPlayPlaylistDir := CurrentPlaylistDirectory;
-        MainImage.Picture := CurrPlaylistImage.Picture;
     end
     else
     begin
@@ -290,6 +293,7 @@ begin
         MusicListBox.Update;
         UpdateAmountOfTracks;
     end;
+
 end;
 
 //OPEN PLAYLIST/TRACK
@@ -308,12 +312,25 @@ begin
 end;
 
 procedure TMainForm.OpenTrack(FileName: string);
+var
+    Cap: string;
 begin
-    MusicPlayer.FileName := FileName;
-    MusicPlayer.Open;
-    UpdateTrackName();
-    UpdateTime();
-    PlayMusic();
+    if HeaderInf.IsCorrectFile(FileName) then
+    begin
+        MusicPlayer.FileName := FileName;
+        MusicPlayer.Open;
+        UpdateTrackName();
+        UpdateTime();
+        PlayMusic();
+    end
+    else
+    begin
+        MusicPlayer.Close;
+        DisActivateMusicPlayer;
+        Localization.SelectLanguageForCaption(Cap, DAMAGED_FILE_RUS, DAMAGED_FILE_ENG);
+        TrackName.Caption := Cap;
+        TimerOfTrackName.Enabled := True;
+    end;
 end;
 
 //CONTROL BUTTONS
@@ -341,9 +358,16 @@ end;
 procedure TMainForm.MuteButtonClick(Sender: TObject);
 begin
     if MuteButton.Down then
-        Tools.SetVolume(MIN_VOLUME, MIN_VOLUME)
+    begin
+        PrevVolumeValue := VolumeTrackBar.Position;
+        Tools.SetVolume(MIN_VOLUME, MIN_VOLUME);
+        VolumeTrackBar.Position := MIN_VOLUME;
+    end
     else
-        Tools.SetVolume(MAX_VOLUME, MAX_VOLUME)
+    begin
+        Tools.SetVolume(PrevVolumeValue, PrevVolumeValue);
+        VolumeTrackBar.Position := PrevVolumeValue;
+    end;
 end;
 
 procedure TMainForm.ShowPlaylistsButtonClick(Sender: TObject);
@@ -404,9 +428,9 @@ begin
     FileName := CurrentPlaylistDirectory + '\' + MusicListBox.Items[CurrentIndex];
     if FileExists(FileName) then
     begin
+        MainImage.Picture := CurrPlaylistImage.Picture;
         OpenTrack(FileName);
         MusicListBox.Selected[CurrentIndex] := True;
-        MainImage.Picture := CurrPlaylistImage.Picture;
     end
     else
     begin
@@ -433,9 +457,9 @@ begin
     FileName := CurrentPlaylistDirectory + '\' + MusicListBox.Items[CurrentIndex];
     if FileExists(FileName) then
     begin
+        MainImage.Picture := CurrPlaylistImage.Picture;
         OpenTrack(FileName);
         MusicListBox.Selected[CurrentIndex] := True;
-        MainImage.Picture := CurrPlaylistImage.Picture;
     end
     else
     begin
@@ -457,8 +481,8 @@ begin
     TrackBar.Enabled := True;
     PlayButton.Enabled := True;
     PauseButton.Enabled := True;
-    NextButton.Enabled := True;
-    PrevButton.Enabled := True;
+    NextButton.Visible := True;
+    PrevButton.Visible := True;
     TimerOfTrackBar.Enabled := True;
     RepeatButton.Enabled := True;
     IsActive := True;
@@ -469,12 +493,12 @@ begin
     TrackBar.Enabled := False;
     PlayButton.Visible := False;
     PauseButton.Visible := False;
-    NextButton.Enabled := False;
-    PrevButton.Enabled := False;
+    NextButton.Visible := False;
+    PrevButton.Visible := False;
     TimerOfTrackBar.Enabled := False;
     TimerOfTrackName.Enabled := False;
     TrackName.Left := 0;
-    TrackName.Caption := '...';
+    MainImage.Picture := DefaultImage.Picture;
 end;
 
 //EXTEND TRACKNAME IN PLAYLIST
@@ -553,6 +577,7 @@ end;
 procedure TMainForm.VolumeTrackBarChange(Sender: TObject);
 begin
     Tools.SetVolume(VolumeTrackBar.Position, VolumeTrackBar.Position);
+    Tools.ResetFocus;
 end;
 
 //PLAYLISTS BUTTONS  ADD, CREATE, DELETE, SHOW, UPDATE
@@ -667,6 +692,8 @@ begin
         if MessageBox(Handle, PChar(Question +
         Tools.CuteName(MusicListBox.FileName) +' ?'), PChar(QuestCap), MB_YESNO + MB_ICONQUESTION) = IDYES then
         begin
+            if CurrentIndex = MusicListBox.Count - 1 then
+                Dec(CurrentIndex);
             DeleteFile(MusicListBox.FileName);
             MusicListBox.Update;
             UpdateAmountOfTracks();
@@ -705,15 +732,23 @@ end;
 
 procedure TMainForm.ChangeCoverButtonClick(Sender: TObject);
 var
-    ImagePath: string;
+    ImagePath, ErrorCap, ErrorMsg: string;
 begin
     if OpenPictureDialog.Execute then
     begin
-        ImagePath := CurrentPlaylistDirectory + COVER_NAME;
-        if FileExists(ImagePath) then
-            DeleteFile(ImagePath);
-        CopyFile(PChar(OpenPictureDialog.FileName), PChar(ImagePath), True);
-        MainImage.Picture.LoadFromFile(ImagePath);
+        try
+            MainImage.Picture.LoadFromFile(OpenPictureDialog.FileName);
+            ImagePath := CurrentPlaylistDirectory + COVER_NAME;
+            if FileExists(ImagePath) then
+                DeleteFile(ImagePath);
+            CopyFile(PChar(OpenPictureDialog.FileName), PChar(ImagePath), True);
+        except
+            Localization.SelectLanguageForMessage(
+                ErrorCap, ErrorMsg,
+                ERROR_CAP_RUS, DAMAGED_FILE_RUS,
+                ERROR_CAP_ENG, DAMAGED_FILE_ENG);
+            MessageBox(Handle, PChar(ErrorMsg), PChar(ErrorCap), MB_OK + MB_ICONERROR);
+        end;
     end;
     Tools.ResetFocus;
 end;

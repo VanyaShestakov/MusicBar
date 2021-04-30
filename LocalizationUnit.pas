@@ -20,6 +20,9 @@ const
     RUS_LNG = 'RUS';
     ENG_LNG = 'ENG';
 
+    DAMAGED_FILE_RUS = 'Файл повреждён. Выберите другой файл!';
+    DAMAGED_FILE_ENG = 'The file is damaged. Please select another file!';
+
     ERROR_CAP_RUS = 'Ошибка';
     ERROR_CAP_ENG = 'Error';
 
@@ -64,6 +67,8 @@ const
 
     ENT_PLST_NAME_RUS = 'Введите название плейлиста';
     ENT_PLST_NAME_ENG = 'Enter playlist title';
+
+
 
 var
   Localization: TLocalization;

@@ -5,8 +5,8 @@
     <Transaction>1899.12.30 00:00:00.000.573,D:\Projects (Delphi)\KURSACH\Unit1.dfm=D:\Projects (Delphi)\KURSACH\SettingsUnit.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.307,D:\Projects (Delphi)\KURSACH\Unit1.dfm=D:\Projects (Delphi)\KURSACH\LoadScreenUnit.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.333,D:\Projects (Delphi)\KURSACH\Unit1.dfm=D:\Projects (Delphi)\KURSACH\AboutUnit.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.615,=D:\Projects (Delphi)\KURSACH\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.686,=D:\Projects (Delphi)\KURSACH\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.803,=D:\Projects (Delphi)\KURSACH\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.588,=D:\Projects (Delphi)\KURSACH\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.022,D:\Projects (Delphi)\KURSACH\MainUnit.dfm=D:\Projects\Unit1.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.943,D:\Projects (Delphi)\KURSACH\Unit1.dfm=D:\Projects (Delphi)\KURSACH\RenamePlaylistUnit.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.886,D:\Projects (Delphi)\KURSACH\LocalizationUnit.pas=</Transaction>
@@ -20,20 +20,20 @@
     <Transaction>1899.12.30 00:00:00.000.179,=D:\Projects (Delphi)\KURSACH\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.677,D:\Projects (Delphi)\KURSACH\Unit1.pas=D:\Projects (Delphi)\KURSACH\LocalizationUnit.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.616,D:\Projects (Delphi)\KURSACH\Unit1.pas=D:\Projects (Delphi)\KURSACH\Tools.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.803,=D:\Projects (Delphi)\KURSACH\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.573,D:\Projects (Delphi)\KURSACH\Unit1.pas=D:\Projects (Delphi)\KURSACH\SettingsUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.608,=D:\Projects (Delphi)\KURSACH\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.350,D:\Projects (Delphi)\KURSACH\Unit1.pas=D:\Projects (Delphi)\KURSACH\CreatePlaylistUnit.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.022,D:\Projects (Delphi)\KURSACH\MainUnit.pas=D:\Projects\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.464,D:\Projects (Delphi)\KURSACH\MusicBar.dproj=D:\Projects\Project1.dproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.307,D:\Projects (Delphi)\KURSACH\Unit1.pas=D:\Projects (Delphi)\KURSACH\LoadScreenUnit.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.333,D:\Projects (Delphi)\KURSACH\Unit1.pas=D:\Projects (Delphi)\KURSACH\AboutUnit.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.588,=D:\Projects (Delphi)\KURSACH\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.573,D:\Projects (Delphi)\KURSACH\Unit1.pas=D:\Projects (Delphi)\KURSACH\SettingsUnit.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.102,=D:\Projects (Delphi)\KURSACH\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.964,=D:\Projects (Delphi)\KURSACH\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.903,=D:\Projects (Delphi)\KURSACH\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.113,=D:\Projects (Delphi)\KURSACH\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.608,=D:\Projects (Delphi)\KURSACH\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.615,=D:\Projects (Delphi)\KURSACH\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.686,=D:\Projects (Delphi)\KURSACH\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.333,D:\Projects (Delphi)\KURSACH\Unit1.pas=D:\Projects (Delphi)\KURSACH\AboutUnit.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.942,D:\Projects (Delphi)\KURSACH\Unit1.pas=D:\Projects (Delphi)\KURSACH\RenamePlaylistUnit.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.350,D:\Projects (Delphi)\KURSACH\Unit1.pas=D:\Projects (Delphi)\KURSACH\CreatePlaylistUnit.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="MainUnit.pas"/>

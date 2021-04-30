@@ -29,7 +29,7 @@ object AboutForm: TAboutForm
     ParentFont = False
   end
   object Image1: TImage
-    Left = 125
+    Left = 155
     Top = -16
     Width = 517
     Height = 419
@@ -2584,29 +2584,29 @@ object AboutForm: TAboutForm
       036B82FF0FA30BA5DA4BCF8C860000000049454E44AE426082}
   end
   object Label2: TLabel
-    Left = 16
+    Left = 17
     Top = 68
-    Width = 234
-    Height = 15
+    Width = 201
+    Height = 13
     Caption = #1052#1091#1079#1099#1082#1072#1083#1100#1085#1099#1081' '#1087#1088#1086#1080#1075#1088#1099#1074#1072#1090#1077#1083#1100' "Music Bar"'
     Font.Charset = ANSI_CHARSET
     Font.Color = clSilver
-    Font.Height = -12
-    Font.Name = 'Segoe UI Semibold'
+    Font.Height = -11
+    Font.Name = 'Calibri'
     Font.Style = [fsBold]
     ParentFont = False
     StyleElements = [seClient, seBorder]
   end
   object Label3: TLabel
-    Left = 17
-    Top = 97
-    Width = 157
-    Height = 15
+    Left = 18
+    Top = 121
+    Width = 132
+    Height = 13
     Caption = #1056#1072#1079#1088#1072#1073#1086#1090#1072#1083': '#1064#1077#1089#1090#1072#1082#1086#1074' '#1048'. '#1052'.'
     Font.Charset = ANSI_CHARSET
     Font.Color = clSilver
-    Font.Height = -12
-    Font.Name = 'Segoe UI Semibold'
+    Font.Height = -11
+    Font.Name = 'Calibri'
     Font.Style = [fsBold]
     ParentFont = False
     StyleElements = [seClient, seBorder]
@@ -2614,55 +2614,125 @@ object AboutForm: TAboutForm
   object Label4: TLabel
     Left = 16
     Top = 313
-    Width = 57
-    Height = 15
-    Caption = #1042#1077#1088#1089#1080#1103' 1.0'
+    Width = 91
+    Height = 13
+    Caption = #1042#1077#1088#1089#1080#1103'/Version 1.0'
     Font.Charset = ANSI_CHARSET
     Font.Color = clSilver
-    Font.Height = -12
-    Font.Name = 'Segoe UI Semibold'
+    Font.Height = -11
+    Font.Name = 'Calibri'
     Font.Style = [fsBold]
     ParentFont = False
     StyleElements = [seClient, seBorder]
   end
   object Label5: TLabel
-    Left = 16
-    Top = 118
-    Width = 158
-    Height = 15
+    Left = 18
+    Top = 140
+    Width = 131
+    Height = 13
     Caption = #1074' '#1088#1072#1084#1082#1072#1093' '#1082#1091#1088#1089#1086#1074#1086#1075#1086' '#1087#1088#1086#1077#1082#1090#1072
     Font.Charset = ANSI_CHARSET
     Font.Color = clSilver
-    Font.Height = -12
-    Font.Name = 'Segoe UI Semibold'
+    Font.Height = -11
+    Font.Name = 'Calibri'
     Font.Style = [fsBold]
     ParentFont = False
     StyleElements = [seClient, seBorder]
   end
   object Label6: TLabel
-    Left = 17
-    Top = 139
-    Width = 141
-    Height = 15
+    Left = 18
+    Top = 159
+    Width = 120
+    Height = 13
     Caption = #1087#1086' '#1076#1080#1089#1094#1080#1087#1083#1080#1085#1077': "'#1054#1089#1085#1086#1074#1099
     Font.Charset = ANSI_CHARSET
     Font.Color = clSilver
-    Font.Height = -12
-    Font.Name = 'Segoe UI Semibold'
+    Font.Height = -11
+    Font.Name = 'Calibri'
     Font.Style = [fsBold]
     ParentFont = False
     StyleElements = [seClient, seBorder]
   end
   object Label7: TLabel
-    Left = 16
-    Top = 160
-    Width = 222
-    Height = 15
+    Left = 17
+    Top = 178
+    Width = 188
+    Height = 13
     Caption = #1072#1083#1075#1086#1088#1080#1090#1084#1080#1079#1072#1094#1080#1080' '#1080' '#1087#1088#1086#1075#1088#1072#1084#1084#1080#1088#1086#1074#1072#1085#1080#1103'"'
     Font.Charset = ANSI_CHARSET
     Font.Color = clSilver
-    Font.Height = -12
-    Font.Name = 'Segoe UI Semibold'
+    Font.Height = -11
+    Font.Name = 'Calibri'
+    Font.Style = [fsBold]
+    ParentFont = False
+    StyleElements = [seClient, seBorder]
+  end
+  object Label8: TLabel
+    Left = 17
+    Top = 87
+    Width = 116
+    Height = 13
+    Caption = 'Music player "Music Bar"'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clSilver
+    Font.Height = -11
+    Font.Name = 'Calibri'
+    Font.Style = [fsBold]
+    ParentFont = False
+    StyleElements = [seClient, seBorder]
+  end
+  object Label9: TLabel
+    Left = 18
+    Top = 217
+    Width = 133
+    Height = 13
+    Caption = 'Developed by Shestakov I.M.'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clSilver
+    Font.Height = -11
+    Font.Name = 'Calibri'
+    Font.Style = [fsBold]
+    ParentFont = False
+    StyleElements = [seClient, seBorder]
+  end
+  object Label10: TLabel
+    Left = 17
+    Top = 236
+    Width = 110
+    Height = 13
+    Caption = 'as part of course project'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clSilver
+    Font.Height = -11
+    Font.Name = 'Calibri'
+    Font.Style = [fsBold]
+    ParentFont = False
+    StyleElements = [seClient, seBorder]
+  end
+  object Label11: TLabel
+    Left = 18
+    Top = 255
+    Width = 146
+    Height = 13
+    Caption = 'in the discipline "Fundamentals'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clSilver
+    Font.Height = -11
+    Font.Name = 'Calibri'
+    Font.Style = [fsBold]
+    ParentFont = False
+    StyleElements = [seClient, seBorder]
+  end
+  object Label12: TLabel
+    Left = 17
+    Top = 274
+    Width = 174
+    Height = 13
+    Caption = 'of algorithmization and programming"'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clSilver
+    Font.Height = -11
+    Font.Name = 'Calibri'
     Font.Style = [fsBold]
     ParentFont = False
     StyleElements = [seClient, seBorder]
