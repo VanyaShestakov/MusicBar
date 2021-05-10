@@ -11,7 +11,8 @@ uses
   EqualizerUnit in 'EqualizerUnit.pas' {EqualizerForm},
   AboutUnit in 'AboutUnit.pas' {AboutForm},
   ToolsUnit in 'ToolsUnit.pas',
-  LocalizationUnit in 'LocalizationUnit.pas';
+  LocalizationUnit in 'LocalizationUnit.pas',
+  HeaderInfo in 'HeaderInfo.pas';
 
 {$R *.res}
 

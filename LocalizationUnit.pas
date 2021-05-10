@@ -14,6 +14,7 @@ type
     TLocalization = class(TObject)
         procedure SetLanguage(Language: TLanguages);
         procedure SelectLanguageForMessage(var Cap, Msg: string; RUS_CAP, RUS_MSG, ENG_CAP, ENG_MSG: string);
+        procedure SelectLanguageForCaption(var Msg: string; RUS_MSG, ENG_MSG: string);
     end;
 
 const
@@ -225,5 +226,19 @@ begin
         Msg := RUS_MSG;
     end;
 end;
+
+procedure TLocalization.SelectLanguageForCaption(var Msg: string; RUS_MSG, ENG_MSG: string);
+begin
+    if Language = ENG then
+    begin
+        Msg := ENG_MSG;
+    end
+    else
+    begin
+        Msg := RUS_MSG;
+    end;
+end;
+
+
 
 end.
